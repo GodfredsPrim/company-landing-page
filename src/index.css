@@ -24,15 +24,23 @@
 
 html {
   scroll-padding-top: 100px;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100dvh;
+  max-width: 100%;
   overflow-x: hidden;
   background: var(--ink);
   color: var(--paper);
+}
+
+#root {
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 button,
@@ -57,7 +65,8 @@ a:focus-visible {
 }
 
 .app-shell {
-  overflow: clip;
+  max-width: 100%;
+  overflow-x: hidden;
   background:
     radial-gradient(circle at top left, rgba(121, 231, 255, 0.16), transparent 30%),
     radial-gradient(circle at 85% 0%, rgba(200, 247, 91, 0.12), transparent 24%),
