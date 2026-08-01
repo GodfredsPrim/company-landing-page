@@ -15,7 +15,7 @@ import {
   PersonIcon,
   SewingPinIcon,
 } from "@radix-ui/react-icons";
-import { useEffect, useState } from "react";
+import { type CSSProperties, useEffect, useState } from "react";
 import { Navigation } from "./components/Navigation";
 import { PageProgress } from "./components/PageProgress";
 import { Reveal } from "./components/Reveal";
@@ -62,63 +62,82 @@ const projects = [
     domain: "fosogo.onrender.com",
     url: "https://fosogo.onrender.com/",
     description: "A community-first platform focused on connecting people to useful services with clarity and trust.",
-    logo: "/assets/solvxit-logo.png",
+    category: "Services",
+    initials: "FG",
+    accent: "#79e7ff",
   },
   {
     name: "BroxStudies",
     domain: "broxstudies.com",
     url: "https://broxstudies.com/",
     description: "An AI-powered learning companion built to support WASSCE readiness, practice, and exam confidence.",
-    logo: "/assets/solvxit-logo.png",
+    category: "Education",
+    initials: "BS",
+    accent: "#c8f75b",
+    image: "/assets/broxstudies-dashboard.png",
   },
   {
     name: "Kooqs",
     domain: "kooqs.vercel.app",
     url: "https://kooqs.vercel.app/",
-    description: "A modern experience designed to simplify discovery, interaction, and digital engagement for users.",
-    logo: "/assets/solvxit-logo.png",
+    description: "A modern food-ordering platform that helps users discover meals, place orders, and arrange convenient delivery.",
+    category: "Food ordering",
+    initials: "KQ",
+    accent: "#ffbd4a",
   },
   {
     name: "Salon Pro",
     domain: "salon-pro-brown.vercel.app",
     url: "https://salon-pro-brown.vercel.app/",
     description: "A polished service platform for scheduling, presenting, and growing salon businesses with ease.",
-    logo: "/assets/solvxit-logo.png",
+    category: "Beauty services",
+    initials: "SP",
+    accent: "#ff8ac7",
   },
   {
     name: "Bisarx",
     domain: "bisarx-8ym0.onrender.com",
     url: "https://bisarx-8ym0.onrender.com/",
     description: "A product concept shaped around practical digital tools for everyday business and customer needs.",
-    logo: "/assets/solvxit-logo.png",
+    category: "Business tools",
+    initials: "BX",
+    accent: "#8da2ff",
   },
   {
     name: "TastyChef",
     domain: "tastychef-weld.vercel.app",
     url: "https://tastychef-weld.vercel.app/",
     description: "A food-forward experience crafted to make recipes, discovery, and culinary inspiration feel effortless.",
-    logo: "/assets/solvxit-logo.png",
+    category: "Culinary",
+    initials: "TC",
+    accent: "#ff7a5c",
   },
   {
     name: "GDSS Hackathon",
     domain: "gdss-hackathon.vercel.app",
     url: "https://gdss-hackathon.vercel.app/",
     description: "A collaborative digital experience built for innovation, learning, and community-led problem solving.",
-    logo: "/assets/solvxit-logo.png",
+    category: "Innovation",
+    initials: "GH",
+    accent: "#9ee66e",
   },
   {
     name: "SolidHands",
     domain: "solidhands-4w32.onrender.com",
     url: "https://solidhands-4w32.onrender.com/",
     description: "A practical platform designed to support service delivery, partnerships, and community impact.",
-    logo: "/assets/solvxit-logo.png",
+    category: "Community",
+    initials: "SH",
+    accent: "#70d6ff",
   },
   {
     name: "CampusConnect",
     domain: "campusconnect-beta-ruddy.vercel.app",
     url: "https://campusconnect-beta-ruddy.vercel.app/",
     description: "A student-centered product built to connect people, opportunities, and campus communities more effectively.",
-    logo: "/assets/solvxit-logo.png",
+    category: "Campus network",
+    initials: "CC",
+    accent: "#b990ff",
   },
 ];
 
@@ -431,11 +450,21 @@ function App() {
               {projects.map((project, index) => (
                 <Reveal className="project-card" key={project.url} delay={index * 0.04}>
                   <a href={project.url} target="_blank" rel="noreferrer">
-                    <div className="project-card-top">
-                      <div className="project-logo-wrap">
-                        <img src={project.logo} alt={`${project.name} logo`} loading="lazy" />
+                    <div
+                      className={project.image ? "project-preview project-preview-image" : "project-preview"}
+                      style={{ "--project-accent": project.accent } as CSSProperties}
+                    >
+                      {project.image ? (
+                        <img src={project.image} alt={`${project.name} product preview`} loading="lazy" />
+                      ) : (
+                        <div className="project-preview-inner" aria-hidden="true">
+                          <span className="project-initials">{project.initials}</span>
+                          <span className="project-preview-label">{project.category}</span>
+                        </div>
+                      )}
+                      <div className="project-card-top">
+                        <span className="project-type">{project.category}</span>
                       </div>
-                      <span className="project-type">Product site</span>
                     </div>
                     <div className="project-card-content">
                       <strong>{project.name}</strong>
@@ -596,8 +625,11 @@ function App() {
       <footer className="footer" id="contact-details">
         <div className="page-width footer-grid">
           <div className="footer-brand">
-            <div className="footer-logo-crop">
-              <img src="/assets/solvxit-logo.png" alt="SOLVXIT-GH logo" />
+            <div className="footer-brand-lockup" aria-label="SOLVXIT-GH">
+              <span className="brand-mark" aria-hidden="true">
+                SX
+              </span>
+              <span className="brand-name">SOLVXIT-GH</span>
             </div>
             <p>
               A Ghanaian technology and innovation company building practical

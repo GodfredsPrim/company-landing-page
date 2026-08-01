@@ -17,9 +17,10 @@ export function Navigation() {
     <header className="site-header">
       <nav className="nav-shell" aria-label="Primary navigation">
         <a className="brand" href="#home" aria-label="SOLVXIT-GH home">
-          <span className="brand-crop">
-            <img src="/assets/solvxit-logo.png" alt="SOLVXIT-GH" />
+          <span className="brand-mark" aria-hidden="true">
+            SX
           </span>
+          <span className="brand-name">SOLVXIT-GH</span>
         </a>
 
         <div className="nav-links">
