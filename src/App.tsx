@@ -215,11 +215,31 @@ function App() {
   const [heroSlide, setHeroSlide] = useState(0);
 
   useEffect(() => {
-    const interval = window.setInterval(() => {
-      setHeroSlide((current) => (current + 1) % team.length);
-    }, 3200);
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (reducedMotion.matches) return;
 
-    return () => window.clearInterval(interval);
+    let interval: number | undefined;
+    const startSlideshow = () => {
+      window.clearInterval(interval);
+      interval = window.setInterval(() => {
+        setHeroSlide((current) => (current + 1) % team.length);
+      }, 6500);
+    };
+    const handleVisibility = () => {
+      if (document.hidden) {
+        window.clearInterval(interval);
+      } else {
+        startSlideshow();
+      }
+    };
+
+    startSlideshow();
+    document.addEventListener("visibilitychange", handleVisibility);
+
+    return () => {
+      window.clearInterval(interval);
+      document.removeEventListener("visibilitychange", handleVisibility);
+    };
   }, []);
 
   const activeHeroImage = team[heroSlide];
@@ -265,7 +285,7 @@ function App() {
                   fetchPriority="high"
                 />
               </div>
-              <div className="hero-panel">
+              <div className="hero-panel" aria-label="SOLVXIT-GH impact overview">
                 <div className="hero-panel-header">
                   <p>Impact pulse</p>
                   <span>Live</span>
@@ -535,7 +555,7 @@ function App() {
                 development organisations, technology partners, investors and
                 communities committed to solving meaningful problems.
               </p>
-              <a className="button" href="#contact">
+              <a className="button" href="mailto:solvxitgh@gmail.com">
                 Start a Conversation <ArrowRightIcon width={18} height={18} />
               </a>
             </Reveal>
@@ -561,11 +581,11 @@ function App() {
                 solving.
               </p>
               <div className="final-actions">
-                <a className="button" href="#contact-details">
-                  Partner With Us
+                <a className="button" href="mailto:solvxitgh@gmail.com">
+                  Email Our Team
                 </a>
-                <a className="button button-secondary" href="#contact-details">
-                  Contact Our Team
+                <a className="button button-secondary" href="tel:+233599170775">
+                  Call Our Team
                 </a>
               </div>
             </Reveal>
@@ -600,9 +620,9 @@ function App() {
           </div>
           <div>
             <h2>Contact</h2>
-            <span>Email: To be provided</span>
-            <span>Phone: To be provided</span>
-            <span>LinkedIn: To be provided</span>
+            <a href="mailto:solvxitgh@gmail.com">solvxitgh@gmail.com</a>
+            <a href="tel:+233599170775">0599170775</a>
+            <a href="tel:+233203623689">0203623689</a>
             <span className="location"><SewingPinIcon width={17} height={17} /> Cape Coast, Ghana</span>
           </div>
         </div>
