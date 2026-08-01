@@ -113,7 +113,7 @@ a:focus-visible {
   height: 66px;
   margin-inline: auto;
   display: grid;
-  grid-template-columns: 190px 1fr auto;
+  grid-template-columns: 220px 1fr auto;
   align-items: center;
   gap: 24px;
   padding: 0 12px 0 8px;
@@ -127,7 +127,7 @@ a:focus-visible {
 }
 
 .brand {
-  width: 176px;
+  width: 210px;
 }
 
 .brand-crop,
@@ -138,15 +138,15 @@ a:focus-visible {
 }
 
 .brand-crop {
-  width: 176px;
+  width: 210px;
   height: 48px;
   border-radius: 999px;
 }
 
 .brand-crop img {
-  width: 224px;
+  width: 228px;
   max-width: none;
-  transform: translate(-24px, -31px);
+  transform: translate(-16px, -31px);
 }
 
 .nav-links {
@@ -404,11 +404,11 @@ a:focus-visible {
 
 .hero-panel {
   position: absolute;
-  right: 18px;
-  bottom: 24px;
+  right: 0;
+  bottom: 2%;
   z-index: 2;
   isolation: isolate;
-  width: min(390px, calc(100% - 36px));
+  width: min(390px, calc(64% - 14px));
   max-width: 100%;
   overflow: hidden;
   padding: 20px;
@@ -497,8 +497,8 @@ a:focus-visible {
   position: absolute;
   left: 0;
   bottom: 2%;
-  width: 42%;
-  height: 42%;
+  width: 36%;
+  height: 34%;
   object-fit: cover;
   object-position: 50% 24%;
   border: 9px solid var(--ink);
@@ -509,10 +509,10 @@ a:focus-visible {
 
 .hero-texture-image {
   position: absolute;
-  right: 5%;
-  bottom: 0;
-  width: 43%;
-  height: 23%;
+  top: 0;
+  left: 7%;
+  width: 36%;
+  height: 21%;
   object-fit: cover;
   border: 8px solid var(--ink);
   border-radius: var(--card-radius);
@@ -1319,9 +1319,9 @@ a:focus-visible {
 }
 
 .footer-logo-crop img {
-  width: 340px;
+  width: 270px;
   max-width: none;
-  transform: translate(-44px, -36px);
+  transform: translate(-10px, -27px);
 }
 
 .footer-brand p {
@@ -1414,7 +1414,7 @@ a:focus-visible {
 
 @media (max-width: 1160px) {
   .nav-shell {
-    grid-template-columns: 176px 1fr auto;
+    grid-template-columns: 205px 1fr auto;
     gap: 14px;
   }
 
@@ -1604,8 +1604,8 @@ a:focus-visible {
   }
 
   .brand-crop img {
-    width: 205px;
-    transform: translate(-25px, -29px);
+    width: 172px;
+    transform: translate(-9px, -22px);
   }
 
   .section {
@@ -1663,6 +1663,7 @@ a:focus-visible {
     inset: auto;
     width: 100%;
     margin: 0;
+    grid-row: 3;
   }
 
   .hero-panel-grid {
@@ -1670,7 +1671,15 @@ a:focus-visible {
   }
 
   .hero-secondary-image {
-    display: none;
+    position: relative;
+    inset: auto;
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    border-width: 0;
+    grid-row: 2;
+    animation: none;
   }
 
   .hero-texture-image {
@@ -1875,6 +1884,11 @@ a:focus-visible {
 
   .brand-crop {
     width: 145px;
+  }
+
+  .brand-crop img {
+    width: 158px;
+    transform: translate(-8px, -20px);
   }
 
   .button {

@@ -223,7 +223,7 @@ function App() {
       window.clearInterval(interval);
       interval = window.setInterval(() => {
         setHeroSlide((current) => (current + 1) % team.length);
-      }, 6500);
+      }, 10000);
     };
     const handleVisibility = () => {
       if (document.hidden) {
